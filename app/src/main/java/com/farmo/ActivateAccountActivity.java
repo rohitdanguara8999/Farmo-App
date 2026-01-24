@@ -21,6 +21,7 @@ public class ActivateAccountActivity extends AppCompatActivity {
     private TextInputEditText etOldPassword, etNewPassword, etConfirmNewPassword;
     private MaterialButton btnActivate;
     private String userId;
+
     private ProgressDialog progressDialog;
 
     @Override
