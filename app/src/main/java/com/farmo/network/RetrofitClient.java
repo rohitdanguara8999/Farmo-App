@@ -1,20 +1,54 @@
-package com.example.farmo_app.network;
+package com.farmo.network;
 
+import android.content.Context;
+import com.farmo.utils.SessionManager;
+import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
 import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
+import java.io.IOException;
 
 public class RetrofitClient {
-    //private static final String BASE_URL = "http://192.168.0.108:8000/api/"; // Update this to your server URL
-    private static final String BASE_URL = "http://footsore-nana-dieretic.ngrok-free.dev/api/";
+    private static final String BASE_URL = "http://footsore-nana-dieretic.ngrok-free.dev/";
     private static Retrofit retrofit = null;
 
-    public static ApiService getApiService() {
+    public static ApiService getApiService(Context context) {
         if (retrofit == null) {
-            HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
-            interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
-            OkHttpClient client = new OkHttpClient.Builder().addInterceptor(interceptor).build();
+            HttpLoggingInterceptor logging = new HttpLoggingInterceptor();
+            logging.setLevel(HttpLoggingInterceptor.Level.BODY);
+
+            SessionManager sessionManager = new SessionManager(context);
+
+            Interceptor headerInterceptor = new Interceptor() {
+                @Override
+                public Response intercept(Chain chain) throws IOException {
+                    Request original = chain.request();
+                    Request.Builder requestBuilder = original.newBuilder()
+                            .header("Accept", "application/json")
+                            .method(original.method(), original.body());
+
+                    String token = sessionManager.getAuthToken();
+                    String userId = sessionManager.getUserId();
+
+                    if (!token.isEmpty()) {
+                        requestBuilder.header("Authorization", "Bearer " + token);
+                    }
+                    if (!userId.isEmpty()) {
+                        requestBuilder.header("X-User-Id", userId);
+                    }
+
+                    Request request = requestBuilder.build();
+                    return chain.proceed(request);
+                }
+            };
+
+            OkHttpClient client = new OkHttpClient.Builder()
+                    .addInterceptor(logging)
+                    .addInterceptor(headerInterceptor)
+                    .build();
 
             retrofit = new Retrofit.Builder()
                     .baseUrl(BASE_URL)

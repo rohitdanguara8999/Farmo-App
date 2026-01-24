@@ -45,10 +45,15 @@ public class DashboardActivity extends AppCompatActivity {
 
         fetchDashboardData();
 
+        setupUI();
+    }
+
+    private void setupUI() {
         ImageView ivVisibility = findViewById(R.id.ivVisibility);
         TextView tvWalletBalance = findViewById(R.id.tvWalletBalance);
         TextView btnProfile = findViewById(R.id.btnProfile);
 
+        // Visibility Toggle
         ivVisibility.setOnClickListener(v -> {
             if (isBalanceVisible) {
                 tvWalletBalance.setText("*****");
@@ -60,17 +65,54 @@ public class DashboardActivity extends AppCompatActivity {
             isBalanceVisible = !isBalanceVisible;
         });
 
+        // Navigation to Profile
         btnProfile.setOnClickListener(v -> {
             Intent intent = new Intent(DashboardActivity.this, ProfileActivity.class);
+            startActivity(intent);
+        });
+
+        // Quick Actions Grid
+        findViewById(R.id.cardAddProduct).setOnClickListener(v -> {
+            Intent intent = new Intent(DashboardActivity.this, AddProductActivity.class);
+            startActivity(intent);
+        });
+
+        findViewById(R.id.cardOrders).setOnClickListener(v -> {
+            Intent intent = new Intent(DashboardActivity.this, OrdersActivity.class);
+            startActivity(intent);
+        });
+
+        findViewById(R.id.cardMyProducts).setOnClickListener(v -> {
+            Intent intent = new Intent(DashboardActivity.this, MyProductsActivity.class);
+            startActivity(intent);
+        });
+
+
+
+        // Stats Row
+        findViewById(R.id.cardOrderAnalytics).setOnClickListener(v -> {
+            Intent intent = new Intent(DashboardActivity.this, OrdersActivity.class);
+            startActivity(intent);
+        });
+
+        findViewById(R.id.cardReviews).setOnClickListener(v -> {
+            Intent intent = new Intent(DashboardActivity.this, ReviewsActivity.class);
+            startActivity(intent);
+        });
+
+
+
+        findViewById(R.id.cardReviewsBottom).setOnClickListener(v -> {
+            Intent intent = new Intent(DashboardActivity.this, ReviewsActivity.class);
             startActivity(intent);
         });
     }
 
     private void fetchDashboardData() {
         String userId = sessionManager.getUserId();
-        if (userId == null) return;
+        if (userId == null || userId.isEmpty()) return;
 
-        RetrofitClient.getApiService().getDashboard(userId).enqueue(new Callback<DashboardResponse>() {
+        RetrofitClient.getApiService(this).getDashboard(userId).enqueue(new Callback<DashboardResponse>() {
             @Override
             public void onResponse(Call<DashboardResponse> call, Response<DashboardResponse> response) {
                 if (response.isSuccessful() && response.body() != null) {
@@ -118,8 +160,5 @@ public class DashboardActivity extends AppCompatActivity {
         tvTodaysLabel.setText(label);
         tvWalletBalance.setText(data.getWalletAmt());
         tvSalesAmount.setText(data.getIncome());
-        
-        float ratingValue = data.getRating();
-        String ratingText = (ratingValue <= 0) ? "No rating" : String.valueOf(ratingValue);
     }
 }

@@ -68,7 +68,7 @@ public class ActivateAccountActivity extends AppCompatActivity {
         progressDialog.show();
         ActivateAccountRequest request = new ActivateAccountRequest(userId, oldPass, newPass);
 
-        RetrofitClient.getApiService().activateAccount(request).enqueue(new Callback<MessageResponse>() {
+        RetrofitClient.getApiService(this).activateAccount(request).enqueue(new Callback<MessageResponse>() {
             @Override
             public void onResponse(Call<MessageResponse> call, Response<MessageResponse> response) {
                 progressDialog.dismiss();

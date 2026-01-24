@@ -38,9 +38,10 @@ public class LoginActivity extends AppCompatActivity {
         
         sessionManager = new SessionManager(this);
         
-        // Auto-login if Remember Me is enabled
+        // Auto-login if session exists
         if (sessionManager.isLoggedIn()) {
             performTokenLogin();
+            return; // Exit early to avoid showing login UI briefly
         }
         
         setContentView(R.layout.activity_login);
@@ -81,22 +82,48 @@ public class LoginActivity extends AppCompatActivity {
 
         TokenLoginRequest request = new TokenLoginRequest(token, "", userId, false, deviceInfo);
 
-        RetrofitClient.getApiService().loginWithToken(request).enqueue(new Callback<LoginResponse>() {
+        RetrofitClient.getApiService(this).loginWithToken(request).enqueue(new Callback<LoginResponse>() {
             @Override
             public void onResponse(Call<LoginResponse> call, Response<LoginResponse> response) {
                 if (response.isSuccessful() && response.body() != null) {
                     LoginResponse loginResponse = response.body();
-                    sessionManager.createLoginSession(loginResponse.getUserId(), loginResponse.getUserType(), loginResponse.getToken());
+                    sessionManager.saveSession(
+                            loginResponse.getUserId(),
+                            loginResponse.getUserType(),
+                            loginResponse.getToken(),
+                            loginResponse.getRefreshToken(),
+                            true
+                    );
                     goToDashboard(loginResponse.getUserId(), loginResponse.getUserType());
                 } else {
-                    sessionManager.logoutUser();
+                    sessionManager.clearSession();
+                    // Re-show login UI
+                    setContentView(R.layout.activity_login);
+                    initViews();
                 }
             }
 
             @Override
             public void onFailure(Call<LoginResponse> call, Throwable t) {
                 Toast.makeText(LoginActivity.this, "Auto-login failed. Check connection.", Toast.LENGTH_SHORT).show();
+                setContentView(R.layout.activity_login);
+                initViews();
             }
+        });
+    }
+
+    private void initViews() {
+        etUsername = findViewById(R.id.et_username);
+        etPassword = findViewById(R.id.et_password);
+        cbRememberMe = findViewById(R.id.cb_remember_me);
+        findViewById(R.id.btn_login).setOnClickListener(v -> performLogin());
+        findViewById(R.id.tv_forgot_password).setOnClickListener(v -> {
+            Intent intent = new Intent(LoginActivity.this, IdentifyUserActivity.class);
+            startActivity(intent);
+        });
+        findViewById(R.id.tv_signup).setOnClickListener(v -> {
+            Intent intent = new Intent(LoginActivity.this, SignupActivity.class);
+            startActivity(intent);
         });
     }
 
@@ -115,26 +142,25 @@ public class LoginActivity extends AppCompatActivity {
         String deviceInfo = Build.MANUFACTURER + " " + Build.MODEL;
         LoginRequest loginRequest = new LoginRequest(identifier, password, false, deviceInfo);
 
-        ApiService apiService = RetrofitClient.getApiService();
+        ApiService apiService = RetrofitClient.getApiService(this);
         apiService.login(loginRequest).enqueue(new Callback<LoginResponse>() {
             @Override
             public void onResponse(Call<LoginResponse> call, Response<LoginResponse> response) {
                 progressDialog.dismiss();
                 if (response.isSuccessful() && response.body() != null) {
                     LoginResponse loginResponse = response.body();
-                    
-                    sessionManager.createLoginSession(
+                    sessionManager.saveSession(
                             loginResponse.getUserId(),
                             loginResponse.getUserType(),
-                            loginResponse.getToken()
+                            loginResponse.getToken(),
+                            loginResponse.getRefreshToken(),
+                            rememberMe
                     );
-
                     goToDashboard(loginResponse.getUserId(), loginResponse.getUserType());
                 } else if (response.errorBody() != null) {
                     try {
                         String errorBody = response.errorBody().string();
                         LoginResponse errorResponse = new Gson().fromJson(errorBody, LoginResponse.class);
-                        
                         if (response.code() == 403 && errorResponse != null && "ACCOUNT_PENDING".equals(errorResponse.getErrorCode())) {
                             Intent intent = new Intent(LoginActivity.this, ActivateAccountActivity.class);
                             intent.putExtra("USER_ID", identifier);

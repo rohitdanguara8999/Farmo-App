@@ -14,6 +14,23 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Farmo"
         android:usesCleartextTraffic="true">
+        
+        <activity
+            android:name=".AddProductActivity"
+            android:exported="false" />
+        <activity
+            android:name=".OrdersActivity"
+            android:exported="false" />
+        <activity
+            android:name=".MyProductsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".MyEarningsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ReviewsActivity"
+            android:exported="false" />
+            
         <activity
             android:name=".ProfileActivity"
             android:exported="false" />
@@ -33,9 +50,6 @@
             android:name=".ForgotPasswordActivity"
             android:exported="false" />
         <activity
-            android:name=".Dashboard2Activity"
-            android:exported="false" />
-        <activity
             android:name=".DashboardActivity"
             android:exported="false" />
         <activity
@@ -47,7 +61,6 @@
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>

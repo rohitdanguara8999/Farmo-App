@@ -54,7 +54,9 @@
                         android:gravity="center"
                         android:text="@string/UserProfile"
                         android:textColor="#FFFFFF"
-                        android:textStyle="bold" />
+                        android:textStyle="bold"
+                        android:clickable="true"
+                        android:focusable="true" />
                 </LinearLayout>
 
                 <androidx.cardview.widget.CardView
@@ -63,6 +65,7 @@
                     android:layout_gravity="bottom"
                     android:layout_marginStart="20dp"
                     android:layout_marginEnd="20dp"
+                    app:cardBackgroundColor="@color/white"
                     app:cardCornerRadius="12dp"
                     app:cardElevation="6dp">
 
@@ -182,12 +185,17 @@
 
                 <!-- Add Product -->
                 <androidx.cardview.widget.CardView
+                    android:id="@+id/cardAddProduct"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_columnWeight="1"
                     android:layout_margin="4dp"
+                    app:cardBackgroundColor="@color/white"
                     app:cardCornerRadius="12dp"
-                    app:cardElevation="2dp">
+                    app:cardElevation="2dp"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:foreground="?android:attr/selectableItemBackground">
                     <RelativeLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:padding="12dp">
                         <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Add\nProduct" android:textSize="16sp" android:textStyle="bold" android:textColor="@color/topical_forest"/>
                         <ImageView android:layout_width="40dp" android:layout_height="40dp" android:layout_alignParentEnd="true" android:layout_centerVertical="true" android:src="@drawable/add_product" />
@@ -196,12 +204,17 @@
 
                 <!-- New Orders -->
                 <androidx.cardview.widget.CardView
+                    android:id="@+id/cardOrders"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_columnWeight="1"
                     android:layout_margin="4dp"
+                    app:cardBackgroundColor="@color/white"
                     app:cardCornerRadius="12dp"
-                    app:cardElevation="2dp">
+                    app:cardElevation="2dp"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:foreground="?android:attr/selectableItemBackground">
                     <RelativeLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:padding="12dp">
                         <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Orders" android:textSize="16sp" android:layout_centerVertical="true" android:textStyle="bold" android:textColor="@color/topical_forest"/>
                         <ImageView android:layout_width="40dp" android:layout_height="40dp" android:layout_alignParentEnd="true" android:layout_centerVertical="true" android:src="@drawable/neworder" />
@@ -210,12 +223,17 @@
 
                 <!-- My Products -->
                 <androidx.cardview.widget.CardView
+                    android:id="@+id/cardMyProducts"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_columnWeight="1"
                     android:layout_margin="4dp"
+                    app:cardBackgroundColor="@color/white"
                     app:cardCornerRadius="12dp"
-                    app:cardElevation="2dp">
+                    app:cardElevation="2dp"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:foreground="?android:attr/selectableItemBackground">
                     <RelativeLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:padding="12dp">
                         <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="My\nProducts" android:textSize="16sp" android:textStyle="bold" android:textColor="@color/topical_forest"/>
                         <ImageView android:layout_width="40dp" android:layout_height="40dp" android:layout_alignParentEnd="true" android:layout_centerVertical="true" android:src="@drawable/myproduct" />
@@ -224,12 +242,17 @@
 
                 <!-- My Earnings -->
                 <androidx.cardview.widget.CardView
+                    android:id="@+id/cardMyEarnings"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_columnWeight="1"
                     android:layout_margin="4dp"
+                    app:cardBackgroundColor="@color/white"
                     app:cardCornerRadius="12dp"
-                    app:cardElevation="2dp">
+                    app:cardElevation="2dp"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:foreground="?android:attr/selectableItemBackground">
                     <RelativeLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:padding="12dp">
                         <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="My\nEarnings" android:textSize="16sp" android:textStyle="bold" android:textColor="@color/topical_forest"/>
                         <ImageView android:layout_width="40dp" android:layout_height="40dp" android:layout_alignParentEnd="true" android:layout_centerVertical="true" android:src="@drawable/earning" />
@@ -247,12 +270,16 @@
                 android:layout_marginTop="8dp">
 
                 <androidx.cardview.widget.CardView
+                    android:id="@+id/cardOrderAnalytics"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:layout_margin="4dp"
                     app:cardCornerRadius="12dp"
-                    app:cardBackgroundColor="#D5E8D4">
+                    app:cardBackgroundColor="#D5E8D4"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:foreground="?android:attr/selectableItemBackground">
                     <RelativeLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:padding="12dp">
                         <LinearLayout android:layout_width="wrap_content" android:layout_height="wrap_content" android:orientation="vertical" android:layout_alignParentStart="true">
                             <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Order Analytics" android:textSize="12sp" android:textColor="@color/topical_forest"/>
@@ -263,12 +290,16 @@
                 </androidx.cardview.widget.CardView>
 
                 <androidx.cardview.widget.CardView
+                    android:id="@+id/cardReviews"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:layout_margin="4dp"
                     app:cardCornerRadius="12dp"
-                    app:cardBackgroundColor="#FFF2CC">
+                    app:cardBackgroundColor="#FFF2CC"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:foreground="?android:attr/selectableItemBackground">
                     <RelativeLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:padding="12dp">
                         <LinearLayout android:layout_width="wrap_content" android:layout_height="wrap_content" android:orientation="vertical" android:layout_alignParentStart="true">
                             <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Reviews" android:textSize="12sp" android:textColor="@color/topical_forest"/>
@@ -297,12 +328,17 @@
 
                 <!-- Sales Analytics -->
                 <androidx.cardview.widget.CardView
+                    android:id="@+id/cardSalesAnalytics"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_columnWeight="1"
                     android:layout_margin="4dp"
+                    app:cardBackgroundColor="@color/white"
                     app:cardCornerRadius="12dp"
-                    app:cardElevation="2dp">
+                    app:cardElevation="2dp"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:foreground="?android:attr/selectableItemBackground">
                     <RelativeLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:padding="12dp">
                         <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Sales\nAnalytics" android:textSize="16sp" android:textStyle="bold" android:textColor="@color/topical_forest"/>
                         <ImageView android:layout_width="40dp" android:layout_height="40dp" android:layout_alignParentEnd="true" android:layout_centerVertical="true" android:src="@drawable/sales_analytics" />
@@ -311,12 +347,17 @@
 
                 <!-- Reviews (Bottom section) -->
                 <androidx.cardview.widget.CardView
+                    android:id="@+id/cardReviewsBottom"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_columnWeight="1"
                     android:layout_margin="4dp"
+                    app:cardBackgroundColor="@color/white"
                     app:cardCornerRadius="12dp"
-                    app:cardElevation="2dp">
+                    app:cardElevation="2dp"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:foreground="?android:attr/selectableItemBackground">
                     <RelativeLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:padding="12dp">
                         <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Reviews\n4.8" android:textSize="16sp" android:textStyle="bold" android:textColor="@color/topical_forest"/>
                         <ImageView android:layout_width="40dp" android:layout_height="40dp" android:layout_alignParentEnd="true" android:layout_centerVertical="true" android:src="@drawable/rating" />
@@ -331,7 +372,7 @@
             </RelativeLayout>
 
             <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:paddingStart="16dp" android:paddingEnd="16dp">
-                <androidx.cardview.widget.CardView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:layout_marginEnd="8dp" app:cardCornerRadius="12dp">
+                <androidx.cardview.widget.CardView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:layout_marginEnd="8dp" app:cardBackgroundColor="@color/white" app:cardCornerRadius="12dp">
                     <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:padding="8dp" android:gravity="center_vertical">
                         <ImageView android:layout_width="40dp" android:layout_height="40dp" android:src="@drawable/ic_launcher_foreground" />
                         <LinearLayout android:layout_width="wrap_content" android:layout_height="wrap_content" android:orientation="vertical" android:layout_marginStart="8dp">
@@ -340,7 +381,7 @@
                         </LinearLayout>
                     </LinearLayout>
                 </androidx.cardview.widget.CardView>
-                <androidx.cardview.widget.CardView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" app:cardCornerRadius="12dp">
+                <androidx.cardview.widget.CardView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" app:cardBackgroundColor="@color/white" app:cardCornerRadius="12dp">
                     <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:padding="8dp" android:gravity="center_vertical">
                         <ImageView android:layout_width="40dp" android:layout_height="40dp" android:src="@drawable/ic_launcher_foreground" />
                         <LinearLayout android:layout_width="wrap_content" android:layout_height="wrap_content" android:orientation="vertical" android:layout_marginStart="8dp">
@@ -356,10 +397,10 @@
 
             <HorizontalScrollView android:layout_width="match_parent" android:layout_height="wrap_content" android:scrollbars="none" android:paddingStart="16dp" android:paddingEnd="16dp" android:layout_marginBottom="24dp">
                 <LinearLayout android:layout_width="wrap_content" android:layout_height="wrap_content" android:orientation="horizontal">
-                    <androidx.cardview.widget.CardView android:layout_width="200dp" android:layout_height="120dp" android:layout_marginEnd="12dp" app:cardCornerRadius="12dp">
+                    <androidx.cardview.widget.CardView android:layout_width="200dp" android:layout_height="120dp" android:layout_marginEnd="12dp" app:cardBackgroundColor="@color/white" app:cardCornerRadius="12dp">
                         <ImageView android:layout_width="match_parent" android:layout_height="match_parent" android:src="@drawable/farmo" android:scaleType="centerCrop"/>
                     </androidx.cardview.widget.CardView>
-                    <androidx.cardview.widget.CardView android:layout_width="200dp" android:layout_height="120dp" android:layout_marginEnd="12dp" app:cardCornerRadius="12dp">
+                    <androidx.cardview.widget.CardView android:layout_width="200dp" android:layout_height="120dp" android:layout_marginEnd="12dp" app:cardBackgroundColor="@color/white" app:cardCornerRadius="12dp">
                         <ImageView android:layout_width="match_parent" android:layout_height="match_parent" android:src="@drawable/farmo" android:scaleType="centerCrop"/>
                     </androidx.cardview.widget.CardView>
                 </LinearLayout>

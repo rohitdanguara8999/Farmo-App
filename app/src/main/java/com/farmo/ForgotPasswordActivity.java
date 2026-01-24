@@ -92,7 +92,7 @@ public class ForgotPasswordActivity extends AppCompatActivity {
         progressDialog.show();
         ForgotPasswordRequest request = new ForgotPasswordRequest(identifier);
         
-        RetrofitClient.getApiService().forgotPassword(request).enqueue(new Callback<ForgotPasswordResponse>() {
+        RetrofitClient.getApiService(this).forgotPassword(request).enqueue(new Callback<ForgotPasswordResponse>() {
             @Override
             public void onResponse(Call<ForgotPasswordResponse> call, Response<ForgotPasswordResponse> response) {
                 progressDialog.dismiss();
@@ -117,7 +117,7 @@ public class ForgotPasswordActivity extends AppCompatActivity {
         progressDialog.show();
         VerifyEmailRequest request = new VerifyEmailRequest(userId, email);
         
-        RetrofitClient.getApiService().verifyEmail(request).enqueue(new Callback<MessageResponse>() {
+        RetrofitClient.getApiService(this).verifyEmail(request).enqueue(new Callback<MessageResponse>() {
             @Override
             public void onResponse(Call<MessageResponse> call, Response<MessageResponse> response) {
                 progressDialog.dismiss();

@@ -7,33 +7,37 @@ import retrofit2.http.POST;
 import retrofit2.http.Query;
 
 public interface ApiService {
-    @POST("login/")
+
+    @POST("api/auth/login/")
     Call<LoginResponse> login(@Body LoginRequest loginRequest);
 
-    @POST("login-with-token/")
+    @POST("api/auth/login-with-token/")
     Call<LoginResponse> loginWithToken(@Body TokenLoginRequest tokenLoginRequest);
 
-    @POST("register/")
+    @POST("api/auth/register/")
     Call<MessageResponse> register(@Body RegisterRequest registerRequest);
 
-    @POST("forgot-password/")
+    @POST("api/auth/forgot-password/")
     Call<ForgotPasswordResponse> forgotPassword(@Body ForgotPasswordRequest forgotPasswordRequest);
 
-    @POST("forgot-password-verify-email/")
+    @POST("api/auth/forgot-password-verify-email/")
     Call<MessageResponse> verifyEmail(@Body VerifyEmailRequest verifyEmailRequest);
 
-    @POST("forgot-password-verify-otp/")
+    @POST("api/auth/forgot-password-verify-otp/")
     Call<MessageResponse> verifyOtp(@Body VerifyOtpRequest verifyOtpRequest);
 
-    @POST("forgot-password-change-password/")
+    @POST("api/auth/forgot-password-change-password/")
     Call<MessageResponse> changePassword(@Body ChangePasswordRequest changePasswordRequest);
 
-    @POST("login-change-password/")
+    @POST("api/auth/login-change-password/")
     Call<MessageResponse> activateAccount(@Body ActivateAccountRequest activateAccountRequest);
 
-    @GET("get-profile/")
+    @POST("api/auth/logout/")
+    Call<MessageResponse> logout();
+
+    @GET("api/user/profile/")
     Call<UserProfileResponse> getUserProfile(@Query("user_id") String userId);
 
-    @GET("get-dashboard/")
+    @GET("api/home/dashboard/")
     Call<DashboardResponse> getDashboard(@Query("user_id") String userId);
 }

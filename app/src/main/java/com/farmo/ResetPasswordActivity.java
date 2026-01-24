@@ -1,4 +1,4 @@
-package com.example.farmo_app;
+package com.farmo;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
@@ -14,9 +14,9 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
-import com.example.farmo_app.network.ChangePasswordRequest;
-import com.example.farmo_app.network.MessageResponse;
-import com.example.farmo_app.network.RetrofitClient;
+import com.farmo.network.ChangePasswordRequest;
+import com.farmo.network.MessageResponse;
+import com.farmo.network.RetrofitClient;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.gson.Gson;
 

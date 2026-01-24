@@ -9,22 +9,35 @@ public class SessionManager {
     private static final String KEY_USER_TYPE = "user_type";
     private static final String KEY_IS_LOGGED_IN = "is_logged_in";
     private static final String KEY_AUTH_TOKEN = "auth_token";
+    private static final String KEY_REFRESH_TOKEN = "refresh_token";
 
     private SharedPreferences pref;
     private SharedPreferences.Editor editor;
-    private Context context;
 
     public SessionManager(Context context) {
-        this.context = context;
         pref = context.getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE);
         editor = pref.edit();
     }
 
-    public void createLoginSession(String userId, String userType, String token) {
-        editor.putString(KEY_USER_ID, userId);
-        editor.putString(KEY_USER_TYPE, userType);
-        editor.putString(KEY_AUTH_TOKEN, token);
-        editor.putBoolean(KEY_IS_LOGGED_IN, true);
+    /**
+     * Saves session data. If keepLogin is false, it stores empty strings
+     * to ensure no sensitive data persists beyond the current session.
+     */
+    public void saveSession(String userId, String userType, String token, String refreshToken, boolean keepLogin) {
+        if (keepLogin) {
+            editor.putString(KEY_USER_ID, userId);
+            editor.putString(KEY_USER_TYPE, userType);
+            editor.putString(KEY_AUTH_TOKEN, token);
+            editor.putString(KEY_REFRESH_TOKEN, refreshToken);
+            editor.putBoolean(KEY_IS_LOGGED_IN, true);
+        } else {
+            // If keep login is not checked, we store empty/null
+            editor.putString(KEY_USER_ID, "");
+            editor.putString(KEY_USER_TYPE, "");
+            editor.putString(KEY_AUTH_TOKEN, "");
+            editor.putString(KEY_REFRESH_TOKEN, "");
+            editor.putBoolean(KEY_IS_LOGGED_IN, false);
+        }
         editor.apply();
     }
 
@@ -33,18 +46,22 @@ public class SessionManager {
     }
 
     public String getUserId() {
-        return pref.getString(KEY_USER_ID, null);
+        return pref.getString(KEY_USER_ID, "");
     }
 
     public String getUserType() {
-        return pref.getString(KEY_USER_TYPE, "Consumer");
+        return pref.getString(KEY_USER_TYPE, "");
     }
 
     public String getAuthToken() {
-        return pref.getString(KEY_AUTH_TOKEN, null);
+        return pref.getString(KEY_AUTH_TOKEN, "");
     }
 
-    public void logoutUser() {
+    public String getRefreshToken() {
+        return pref.getString(KEY_REFRESH_TOKEN, "");
+    }
+
+    public void clearSession() {
         editor.clear();
         editor.apply();
     }

@@ -1,19 +1,18 @@
-package com.example.farmo_app;
+package com.farmo;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.farmo_app.network.RetrofitClient;
-import com.example.farmo_app.network.UserProfileResponse;
-import com.example.farmo_app.utils.SessionManager;
+import com.farmo.network.MessageResponse;
+import com.farmo.network.RetrofitClient;
+import com.farmo.network.UserProfileResponse;
+import com.farmo.utils.SessionManager;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -58,26 +57,26 @@ public class ProfileActivity extends AppCompatActivity {
         progressDialog.setMessage("Loading Profile...");
         progressDialog.setCancelable(false);
 
-        if (userId != null) {
+        if (userId != null && !userId.isEmpty()) {
             fetchUserProfile(userId);
-        } else {
-            Toast.makeText(this, "User ID not found", Toast.LENGTH_SHORT).show();
         }
     }
 
     private void setupItem(View view, String label) {
+        if (view == null) return;
         TextView tvLabel = view.findViewById(R.id.tvLabel);
-        tvLabel.setText(label);
+        if (tvLabel != null) tvLabel.setText(label);
     }
 
     private void setItemValue(View view, String value) {
+        if (view == null) return;
         TextView tvValue = view.findViewById(R.id.tvValue);
-        tvValue.setText(value != null ? value : "N/A");
+        if (tvValue != null) tvValue.setText(value != null ? value : "N/A");
     }
 
     private void fetchUserProfile(String userId) {
         progressDialog.show();
-        RetrofitClient.getApiService().getUserProfile(userId).enqueue(new Callback<UserProfileResponse>() {
+        RetrofitClient.getApiService(this).getUserProfile(userId).enqueue(new Callback<UserProfileResponse>() {
             @Override
             public void onResponse(Call<UserProfileResponse> call, Response<UserProfileResponse> response) {
                 progressDialog.dismiss();
@@ -113,10 +112,30 @@ public class ProfileActivity extends AppCompatActivity {
     }
 
     private void performLogout() {
-        sessionManager.clearSession();
-        Intent intent = new Intent(ProfileActivity.this, LoginActivity.class);
-        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-        startActivity(intent);
-        finish();
+        progressDialog.setMessage("Logging out...");
+        progressDialog.show();
+        
+        RetrofitClient.getApiService(this).logout().enqueue(new Callback<MessageResponse>() {
+            @Override
+            public void onResponse(Call<MessageResponse> call, Response<MessageResponse> response) {
+                progressDialog.dismiss();
+                sessionManager.clearSession();
+                Intent intent = new Intent(ProfileActivity.this, LoginActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                startActivity(intent);
+                finish();
+            }
+
+            @Override
+            public void onFailure(Call<MessageResponse> call, Throwable t) {
+                progressDialog.dismiss();
+                // Even on failure, clear local session
+                sessionManager.clearSession();
+                Intent intent = new Intent(ProfileActivity.this, LoginActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                startActivity(intent);
+                finish();
+            }
+        });
     }
 }

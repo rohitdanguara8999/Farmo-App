@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:padding="24dp"
-    android:background="#FFFFFF"
+    android:background="@color/light_topical_forest"
     tools:context=".VerifyOtpActivity">
 
     <LinearLayout
@@ -22,14 +22,14 @@
             android:layout_width="24dp"
             android:layout_height="24dp"
             android:src="@drawable/ic_back_arrow"
-            app:tint="#1A1C1E" />
+            app:tint="@color/topical_forest" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:text="Back"
-            android:textColor="#1A1C1E"
+            android:textColor="@color/topical_forest"
             android:textSize="16sp"
             android:textStyle="bold" />
     </LinearLayout>
@@ -45,7 +45,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="60dp"
             android:text="OTP Verification"
-            android:textColor="#000000"
+            android:textColor="@color/topical_forest"
             android:textSize="26sp"
             android:textStyle="bold" />
 
@@ -55,7 +55,7 @@
             android:layout_marginTop="16dp"
             android:gravity="center"
             android:text="We've sent you a 6-digit verification code to\nyour email address"
-            android:textColor="#757575"
+            android:textColor="@color/medium_gray"
             android:textSize="16sp" />
 
         <com.google.android.material.textfield.TextInputLayout
@@ -66,7 +66,9 @@
             app:boxCornerRadiusBottomEnd="12dp"
             app:boxCornerRadiusBottomStart="12dp"
             app:boxCornerRadiusTopEnd="12dp"
-            app:boxCornerRadiusTopStart="12dp">
+            app:boxCornerRadiusTopStart="12dp"
+            app:boxStrokeColor="@color/topical_forest"
+            app:hintTextColor="@color/topical_forest">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/etOtp"
@@ -78,7 +80,8 @@
                 android:maxLength="6"
                 android:padding="16dp"
                 android:textSize="24sp"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                android:textColor="@color/black" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <TextView
@@ -87,7 +90,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="30dp"
             android:text="Code expires in 10:00"
-            android:textColor="#757575" />
+            android:textColor="@color/medium_gray" />
 
         <TextView
             android:id="@+id/tvResendCode"
@@ -96,20 +99,20 @@
             android:layout_marginTop="18dp"
             android:padding="8dp"
             android:text="Resend Code"
-            android:textColor="#00473B"
+            android:textColor="@color/topical_forest"
             android:textStyle="bold" />
 
-        <Button
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/btnVerify"
             android:layout_width="match_parent"
             android:layout_height="55dp"
             android:layout_marginTop="38dp"
-            android:backgroundTint="#00473B"
             android:text="Verify"
             android:textAllCaps="false"
             android:textColor="#FFFFFF"
             android:textSize="18sp"
-            app:cornerRadius="12dp" />
+            app:cornerRadius="12dp"
+            app:backgroundTint="@color/topical_forest" />
 
     </LinearLayout>
 </LinearLayout>
