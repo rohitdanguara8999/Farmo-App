@@ -1,4 +1,4 @@
-package com.example.farmo_app;
+package com.farmo;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
@@ -11,9 +11,9 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.farmo_app.network.RetrofitClient;
-import com.example.farmo_app.network.UserProfileResponse;
-import com.example.farmo_app.utils.SessionManager;
+import com.farmo.network.RetrofitClient;
+import com.farmo.network.UserProfileResponse;
+import com.farmo.utils.SessionManager;
 
 import retrofit2.Call;
 import retrofit2.Callback;

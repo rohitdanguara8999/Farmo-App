@@ -1,4 +1,4 @@
-package com.example.farmo_app;
+package com.farmo;
 
 import android.app.DatePickerDialog;
 import android.app.ProgressDialog;
@@ -13,9 +13,9 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.farmo_app.network.MessageResponse;
-import com.example.farmo_app.network.RegisterRequest;
-import com.example.farmo_app.network.RetrofitClient;
+import com.farmo.network.MessageResponse;
+import com.farmo.network.RegisterRequest;
+import com.farmo.network.RetrofitClient;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.gson.Gson;
 

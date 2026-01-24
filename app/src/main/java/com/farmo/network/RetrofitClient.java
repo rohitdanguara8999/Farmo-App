@@ -1,4 +1,4 @@
-package com.example.farmo_app.network;
+package com.farmo.network;
 
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;

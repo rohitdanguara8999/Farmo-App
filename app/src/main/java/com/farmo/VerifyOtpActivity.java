@@ -1,4 +1,4 @@
-package com.example.farmo_app;
+package com.farmo;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
@@ -13,9 +13,9 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.farmo_app.network.MessageResponse;
-import com.example.farmo_app.network.RetrofitClient;
-import com.example.farmo_app.network.VerifyOtpRequest;
+import com.farmo.network.MessageResponse;
+import com.farmo.network.RetrofitClient;
+import com.farmo.network.VerifyOtpRequest;
 import com.google.gson.Gson;
 
 import retrofit2.Call;
