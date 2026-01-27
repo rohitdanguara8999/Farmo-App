@@ -1,4 +1,4 @@
-package com.farmo;
+package com.farmo.activities;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
@@ -12,11 +12,13 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.farmo.activities.farmerActivities.FarmerDashboardActivity;
+import com.farmo.R;
 import com.farmo.network.ApiService;
-import com.farmo.network.LoginRequest;
-import com.farmo.network.LoginResponse;
+import com.farmo.network.auth.LoginRequest;
+import com.farmo.network.auth.LoginResponse;
 import com.farmo.network.RetrofitClient;
-import com.farmo.network.TokenLoginRequest;
+import com.farmo.network.auth.TokenLoginRequest;
 import com.farmo.utils.SessionManager;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.gson.Gson;
@@ -185,7 +187,7 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void goToDashboard(String userId, String userType) {
-        Intent intent = new Intent(LoginActivity.this, DashboardActivity.class);
+        Intent intent = new Intent(LoginActivity.this, FarmerDashboardActivity.class);
         intent.putExtra("USER_ID", userId);
         intent.putExtra("USER_TYPE", userType);
         startActivity(intent);

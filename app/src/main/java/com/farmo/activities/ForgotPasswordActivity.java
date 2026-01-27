@@ -1,4 +1,4 @@
-package com.farmo;
+package com.farmo.activities;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
@@ -11,12 +11,12 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.farmo.network.ApiService;
-import com.farmo.network.ForgotPasswordRequest;
-import com.farmo.network.ForgotPasswordResponse;
+import com.farmo.R;
+import com.farmo.network.auth.ForgotPasswordRequest;
+import com.farmo.network.auth.ForgotPasswordResponse;
 import com.farmo.network.MessageResponse;
 import com.farmo.network.RetrofitClient;
-import com.farmo.network.VerifyEmailRequest;
+import com.farmo.network.auth.VerifyEmailRequest;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.gson.Gson;

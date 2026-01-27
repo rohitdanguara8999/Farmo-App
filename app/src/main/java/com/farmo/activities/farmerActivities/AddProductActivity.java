@@ -1,7 +1,9 @@
-package com.farmo;
+package com.farmo.activities.farmerActivities;
 
 import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.farmo.R;
 
 public class AddProductActivity extends AppCompatActivity {
     @Override

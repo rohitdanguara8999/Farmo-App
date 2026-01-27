@@ -1,4 +1,4 @@
-package com.farmo;
+package com.farmo.activities;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
@@ -14,7 +14,8 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
-import com.farmo.network.ChangePasswordRequest;
+import com.farmo.R;
+import com.farmo.network.auth.ForgotPasswordChangePasswordRequest;
 import com.farmo.network.MessageResponse;
 import com.farmo.network.RetrofitClient;
 import com.google.android.material.textfield.TextInputEditText;
@@ -81,7 +82,7 @@ public class ResetPasswordActivity extends AppCompatActivity {
 
     private void performPasswordChange(String password) {
         progressDialog.show();
-        ChangePasswordRequest request = new ChangePasswordRequest(userId, password);
+        ForgotPasswordChangePasswordRequest request = new ForgotPasswordChangePasswordRequest(userId, password);
         
         RetrofitClient.getApiService().changePassword(request).enqueue(new Callback<MessageResponse>() {
             @Override

@@ -8,7 +8,7 @@
     android:background="@color/light_topical_forest"
     android:orientation="vertical"
     android:padding="24dp"
-    tools:context=".IdentifyUserActivity">
+    tools:context=".activities.IdentifyUserActivity">
 
     <LinearLayout
         android:id="@+id/btnBack"

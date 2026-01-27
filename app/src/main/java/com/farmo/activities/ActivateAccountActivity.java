@@ -1,4 +1,4 @@
-package com.farmo;
+package com.farmo.activities;
 
 import android.app.ProgressDialog;
 import android.os.Bundle;
@@ -6,9 +6,10 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.farmo.network.ActivateAccountRequest;
+import com.farmo.R;
 import com.farmo.network.MessageResponse;
 import com.farmo.network.RetrofitClient;
+import com.farmo.network.auth.ForgotPasswordChangePasswordRequest;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.textfield.TextInputEditText;
 
@@ -66,7 +67,7 @@ public class ActivateAccountActivity extends AppCompatActivity {
 
     private void performActivation(String oldPass, String newPass) {
         progressDialog.show();
-        ActivateAccountRequest request = new ActivateAccountRequest(userId, oldPass, newPass);
+        ForgotPasswordChangePasswordRequest.ActivateAccountRequest request = new ForgotPasswordChangePasswordRequest.ActivateAccountRequest(userId, oldPass, newPass);
 
         RetrofitClient.getApiService(this).activateAccount(request).enqueue(new Callback<MessageResponse>() {
             @Override

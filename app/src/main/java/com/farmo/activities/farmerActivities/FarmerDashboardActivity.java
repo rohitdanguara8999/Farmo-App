@@ -1,14 +1,17 @@
-package com.farmo;
+package com.farmo.activities.farmerActivities;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.farmo.activities.OrdersActivity;
+import com.farmo.activities.ProfileActivity;
+import com.farmo.R;
+import com.farmo.activities.ReviewsActivity;
 import com.farmo.network.DashboardResponse;
 import com.farmo.network.RetrofitClient;
 import com.farmo.utils.SessionManager;
@@ -19,7 +22,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class DashboardActivity extends AppCompatActivity {
+public class FarmerDashboardActivity extends AppCompatActivity {
 
     private boolean isBalanceVisible = true;
     private String userType = "Consumer";
@@ -38,7 +41,7 @@ public class DashboardActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_dashboard);
+        setContentView(R.layout.activity_farmer_dashboard);
 
         sessionManager = new SessionManager(this);
         userType = sessionManager.getUserType();
@@ -67,23 +70,23 @@ public class DashboardActivity extends AppCompatActivity {
 
         // Navigation to Profile
         btnProfile.setOnClickListener(v -> {
-            Intent intent = new Intent(DashboardActivity.this, ProfileActivity.class);
+            Intent intent = new Intent(FarmerDashboardActivity.this, ProfileActivity.class);
             startActivity(intent);
         });
 
         // Quick Actions Grid
         findViewById(R.id.cardAddProduct).setOnClickListener(v -> {
-            Intent intent = new Intent(DashboardActivity.this, AddProductActivity.class);
+            Intent intent = new Intent(FarmerDashboardActivity.this, AddProductActivity.class);
             startActivity(intent);
         });
 
         findViewById(R.id.cardOrders).setOnClickListener(v -> {
-            Intent intent = new Intent(DashboardActivity.this, OrdersActivity.class);
+            Intent intent = new Intent(FarmerDashboardActivity.this, OrdersActivity.class);
             startActivity(intent);
         });
 
         findViewById(R.id.cardMyProducts).setOnClickListener(v -> {
-            Intent intent = new Intent(DashboardActivity.this, MyProductsActivity.class);
+            Intent intent = new Intent(FarmerDashboardActivity.this, MyProductsActivity.class);
             startActivity(intent);
         });
 
@@ -91,19 +94,19 @@ public class DashboardActivity extends AppCompatActivity {
 
         // Stats Row
         findViewById(R.id.cardOrderAnalytics).setOnClickListener(v -> {
-            Intent intent = new Intent(DashboardActivity.this, OrdersActivity.class);
+            Intent intent = new Intent(FarmerDashboardActivity.this, OrdersActivity.class);
             startActivity(intent);
         });
 
         findViewById(R.id.cardReviews).setOnClickListener(v -> {
-            Intent intent = new Intent(DashboardActivity.this, ReviewsActivity.class);
+            Intent intent = new Intent(FarmerDashboardActivity.this, ReviewsActivity.class);
             startActivity(intent);
         });
 
 
 
         findViewById(R.id.cardReviewsBottom).setOnClickListener(v -> {
-            Intent intent = new Intent(DashboardActivity.this, ReviewsActivity.class);
+            Intent intent = new Intent(FarmerDashboardActivity.this, ReviewsActivity.class);
             startActivity(intent);
         });
     }
@@ -127,7 +130,7 @@ public class DashboardActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<DashboardResponse> call, Throwable t) {
-                Toast.makeText(DashboardActivity.this, "Network Error", Toast.LENGTH_SHORT).show();
+                Toast.makeText(FarmerDashboardActivity.this, "Network Error", Toast.LENGTH_SHORT).show();
             }
         });
     }

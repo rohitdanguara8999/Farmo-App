@@ -1,5 +1,15 @@
 package com.farmo.network;
 
+import com.farmo.network.auth.ForgotPasswordChangePasswordRequest;
+import com.farmo.network.auth.ForgotPasswordRequest;
+import com.farmo.network.auth.ForgotPasswordResponse;
+import com.farmo.network.auth.LoginRequest;
+import com.farmo.network.auth.LoginResponse;
+import com.farmo.network.auth.RegisterRequest;
+import com.farmo.network.auth.TokenLoginRequest;
+import com.farmo.network.auth.VerifyEmailRequest;
+import com.farmo.network.auth.VerifyOtpRequest;
+
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
@@ -27,17 +37,17 @@ public interface ApiService {
     Call<MessageResponse> verifyOtp(@Body VerifyOtpRequest verifyOtpRequest);
 
     @POST("api/auth/forgot-password-change-password/")
-    Call<MessageResponse> changePassword(@Body ChangePasswordRequest changePasswordRequest);
+    Call<MessageResponse> changePassword(@Body ForgotPasswordChangePasswordRequest changePasswordRequest);
 
     @POST("api/auth/login-change-password/")
-    Call<MessageResponse> activateAccount(@Body ActivateAccountRequest activateAccountRequest);
+    Call<MessageResponse> activateAccount(@Body ForgotPasswordChangePasswordRequest.ActivateAccountRequest activateAccountRequest);
 
     @POST("api/auth/logout/")
     Call<MessageResponse> logout();
 
-    @GET("api/user/profile/")
+    @POST("api/user/profile/")
     Call<UserProfileResponse> getUserProfile(@Query("user_id") String userId);
 
-    @GET("api/home/dashboard/")
+    @POST("api/home/dashboard/")
     Call<DashboardResponse> getDashboard(@Query("user_id") String userId);
 }

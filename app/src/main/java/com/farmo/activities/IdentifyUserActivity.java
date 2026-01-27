@@ -1,4 +1,4 @@
-package com.farmo;
+package com.farmo.activities;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
@@ -23,8 +23,9 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
-import com.farmo.network.ForgotPasswordRequest;
-import com.farmo.network.ForgotPasswordResponse;
+import com.farmo.R;
+import com.farmo.network.auth.ForgotPasswordRequest;
+import com.farmo.network.auth.ForgotPasswordResponse;
 import com.farmo.network.RetrofitClient;
 
 import retrofit2.Call;

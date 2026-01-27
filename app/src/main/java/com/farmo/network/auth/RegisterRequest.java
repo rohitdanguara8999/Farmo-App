@@ -1,4 +1,4 @@
-package com.farmo.network;
+package com.farmo.network.auth;
 
 import com.google.gson.annotations.SerializedName;
 

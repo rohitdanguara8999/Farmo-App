@@ -7,7 +7,7 @@
     android:orientation="vertical"
     android:padding="24dp"
     android:background="@color/light_topical_forest"
-    tools:context=".VerifyOtpActivity">
+    tools:context=".activities.VerifyOtpActivity">
 
     <LinearLayout
         android:id="@+id/btnBack"
