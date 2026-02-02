@@ -116,7 +116,7 @@ public class IdentifyUserActivity extends AppCompatActivity {
         progressDialog.show();
         ForgotPasswordRequest request = new ForgotPasswordRequest(identifier);
         
-        RetrofitClient.getApiService().forgotPassword(request).enqueue(new Callback<ForgotPasswordResponse>() {
+        RetrofitClient.getApiService(this).forgotPassword(request).enqueue(new Callback<ForgotPasswordResponse>() {
             @Override
             public void onResponse(Call<ForgotPasswordResponse> call, Response<ForgotPasswordResponse> response) {
                 progressDialog.dismiss();

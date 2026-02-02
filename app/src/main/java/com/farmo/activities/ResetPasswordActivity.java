@@ -84,7 +84,7 @@ public class ResetPasswordActivity extends AppCompatActivity {
         progressDialog.show();
         ForgotPasswordChangePasswordRequest request = new ForgotPasswordChangePasswordRequest(userId, password);
         
-        RetrofitClient.getApiService().changePassword(request).enqueue(new Callback<MessageResponse>() {
+        RetrofitClient.getApiService(this).changePassword(request).enqueue(new Callback<MessageResponse>() {
             @Override
             public void onResponse(Call<MessageResponse> call, Response<MessageResponse> response) {
                 progressDialog.dismiss();
